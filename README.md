@@ -25,3 +25,8 @@ EcoSort is a modern, responsive, nature-inspired web application designed to hel
    ```
 
 The production assets will be generated in `dist/`.
+
+## 🌱 Live Demo
+
+Try EcoSort here: [EcoSort – Household Waste Segregation & Sustainability](https://ecosort-household-waste-segregation-sustainabilit.ai.studio)
+
