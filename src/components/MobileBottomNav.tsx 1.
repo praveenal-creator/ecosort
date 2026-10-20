@@ -1,0 +1,163 @@
+import React, { useState } from 'react';
+import { Language } from '../types';
+import { getTranslation } from '../i18n/translations';
+import {
+  LayoutDashboard,
+  BookOpen,
+  Camera,
+  ClipboardList,
+  GraduationCap,
+  MoreHorizontal,
+  MapPin,
+  Target,
+  Award,
+  BarChart3,
+  Settings,
+  X
+} from 'lucide-react';
+
+interface MobileBottomNavProps {
+  currentTab: string;
+  onSelectTab: (tab: string) => void;
+  lang: Language;
+}
+
+export const MobileBottomNav: React.FC<MobileBottomNavProps> = ({
+  currentTab,
+  onSelectTab,
+  lang
+}) => {
+  const t = getTranslation(lang);
+  const [showMoreMenu, setShowMoreMenu] = useState(false);
+
+  const mainTabs = [
+    { id: 'dashboard', label: t.nav.dashboard, icon: LayoutDashboard },
+    { id: 'guide', label: t.nav.guide, icon: BookOpen },
+    { id: 'scanner', label: t.nav.scanner, icon: Camera },
+    { id: 'log', label: t.nav.log, icon: ClipboardList },
+    { id: 'hub', label: t.nav.hub, icon: GraduationCap }
+  ];
+
+  const moreTabs = [
+    { id: 'map', label: t.nav.map, icon: MapPin },
+    { id: 'challenges', label: t.nav.challenges, icon: Target },
+    { id: 'achievements', label: t.nav.achievements, icon: Award },
+    { id: 'progress', label: t.nav.progress, icon: BarChart3 },
+    { id: 'settings', label: t.nav.settings, icon: Settings }
+  ];
+
+  const isMoreActive = moreTabs.some((tab) => tab.id === currentTab);
+
+  return (
+    <>
+      {/* More Menu Drawer Sheet */}
+      {showMoreMenu && (
+        <div
+          className="fixed inset-0 z-40 bg-black/40 backdrop-blur-xs flex flex-col justify-end xl:hidden"
+          onClick={() => setShowMoreMenu(false)}
+        >
+          <div
+            className="bg-[#FFFFFF] dark:bg-[#16231C] rounded-t-3xl p-5 border-t border-[#DFE6DC] dark:border-[#253A2E] space-y-4 max-h-[70vh] overflow-y-auto animate-in slide-in-from-bottom-5 duration-200"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-2 border-b border-[#EEF2EA] dark:border-[#203429]">
+              <span className="text-xs font-bold text-[#18392B] dark:text-[#E8F3ED] uppercase tracking-wider">
+                {lang === 'en' ? 'More Navigation' : 'கூடுதல் பிரிவுகள்'}
+              </span>
+              <button
+                onClick={() => setShowMoreMenu(false)}
+                className="p-1 rounded-lg text-[#6B8072] dark:text-[#9FB3A5]"
+              >
+                <X className="w-5 h-5" />
+              </button>
+            </div>
+
+            <div className="grid grid-cols-2 gap-2.5">
+              {moreTabs.map((item) => {
+                const Icon = item.icon;
+                const isActive = currentTab === item.id;
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => {
+                      onSelectTab(item.id);
+                      setShowMoreMenu(false);
+                    }}
+                    className={`flex items-center gap-3 p-3 rounded-xl border text-left transition-all ${
+                      isActive
+                        ? 'bg-[#EBF3EC] dark:bg-[#1E372B] border-[#234937] text-[#18392B] dark:text-[#CDE5D7] font-bold'
+                        : 'bg-[#F9FAF7] dark:bg-[#1B2921] border-[#E3E8DC] dark:border-[#22352A] text-[#3E5244] dark:text-[#A7BFB2]'
+                    }`}
+                  >
+                    <Icon className="w-4 h-4 text-[#234937] dark:text-[#88C6A2]" />
+                    <span className="text-xs">{item.label}</span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Fixed Bottom Bar */}
+      <nav
+        aria-label="Mobile Navigation"
+        className="xl:hidden fixed bottom-0 left-0 right-0 z-30 bg-[#FAFBF7]/95 dark:bg-[#121B16]/95 backdrop-blur-md border-t border-[#DFE5D8] dark:border-[#203429] px-2 py-1 shadow-[0_-4px_16px_rgba(0,0,0,0.04)]"
+      >
+        <div className="grid grid-cols-6 gap-0.5 items-center justify-around max-w-md mx-auto">
+          {mainTabs.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = currentTab === tab.id;
+            return (
+              <button
+                key={tab.id}
+                onClick={() => onSelectTab(tab.id)}
+                className={`flex flex-col items-center justify-center py-1.5 px-0.5 rounded-lg transition-all min-h-[44px] min-w-[44px] ${
+                  isActive
+                    ? 'text-[#1E4331] dark:text-[#88C6A2] font-semibold'
+                    : 'text-[#64786A] dark:text-[#849C8F] hover:text-[#1E4331]'
+                }`}
+              >
+                <div
+                  className={`p-1 rounded-md transition-colors ${
+                    isActive
+                      ? 'bg-[#DFEBE3] dark:bg-[#1C3327] text-[#18392B] dark:text-[#88C6A2]'
+                      : 'text-[#586F60] dark:text-[#849C8F]'
+                  }`}
+                >
+                  <Icon className="w-4 h-4" />
+                </div>
+                <span className="text-[10px] tracking-tight mt-0.5 truncate w-full text-center">
+                  {tab.label}
+                </span>
+              </button>
+            );
+          })}
+
+          {/* More trigger */}
+          <button
+            onClick={() => setShowMoreMenu(true)}
+            className={`flex flex-col items-center justify-center py-1.5 px-0.5 rounded-lg transition-all min-h-[44px] min-w-[44px] ${
+              isMoreActive
+                ? 'text-[#1E4331] dark:text-[#88C6A2] font-semibold'
+                : 'text-[#64786A] dark:text-[#849C8F] hover:text-[#1E4331]'
+            }`}
+          >
+            <div
+              className={`p-1 rounded-md transition-colors ${
+                isMoreActive
+                  ? 'bg-[#DFEBE3] dark:bg-[#1C3327] text-[#18392B] dark:text-[#88C6A2]'
+                  : 'text-[#586F60] dark:text-[#849C8F]'
+              }`}
+            >
+              <MoreHorizontal className="w-4 h-4" />
+            </div>
+            <span className="text-[10px] tracking-tight mt-0.5 truncate w-full text-center">
+              {lang === 'en' ? 'More' : 'மேலும்'}
+            </span>
+          </button>
+        </div>
+      </nav>
+    </>
+  );
+};
