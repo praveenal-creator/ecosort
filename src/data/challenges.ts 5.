@@ -1,0 +1,124 @@
+import { EcoChallenge } from '../types';
+
+export const ECO_CHALLENGES: EcoChallenge[] = [
+  {
+    id: 'daily-kitchen-segregation',
+    title: {
+      en: '100% Kitchen Waste Segregation Today',
+      ta: 'இன்று 100% சமையலறை கழிவு பிரிப்பு'
+    },
+    description: {
+      en: 'Ensure zero plastic wrappers or foil enter the wet organic bin all day long.',
+      ta: 'நாள் முழுவதும் எந்த பிளாஸ்டிக் உறையும் ஈரக்கழிவு தொட்டிக்குள் செல்லாமல் இருப்பதை உறுதி செய்யுங்கள்.'
+    },
+    category: 'wet',
+    points: 25,
+    recurrence: 'daily',
+    icon: 'Utensils'
+  },
+  {
+    id: 'daily-rinse-cartons',
+    title: {
+      en: 'Rinse & Dry Milk Pouches or Beverage Cartons',
+      ta: 'பால் பாக்கெட்டுகளை கழுவி உலர்த்துதல்'
+    },
+    description: {
+      en: 'Slit open and wash today’s empty milk pouches or juice boxes before adding to dry bin.',
+      ta: 'இன்றைய காலி பால் பாக்கெட்டுகளை வெட்டி கழுவி உலர்த்தி உலர் கழிவில் சேர்க்கவும்.'
+    },
+    category: 'dry',
+    points: 20,
+    recurrence: 'daily',
+    icon: 'Droplet'
+  },
+  {
+    id: 'daily-no-single-use',
+    title: {
+      en: 'Zero Single-Use Bag Day',
+      ta: 'ஒருமுறை பயன்படுத்தும் நெகிழி இல்லாத நாள்'
+    },
+    description: {
+      en: 'Use cloth bags or reusable tote containers for all shopping runs today.',
+      ta: 'இன்று கடைக்குச் செல்லும்போது துணிப்பை அல்லது மீண்டும் பயன்படுத்தக்கூடிய பைகளை மட்டும் பயன்படுத்துங்கள்.'
+    },
+    category: 'lifestyle',
+    points: 20,
+    recurrence: 'daily',
+    icon: 'ShoppingBag'
+  },
+  {
+    id: 'daily-sanitary-marking',
+    title: {
+      en: 'Wrap & Mark Sanitary / Sharps Waste',
+      ta: 'சுகாதார கழிவுகளை பத்திரமாக மூடி குறியிடுதல்'
+    },
+    description: {
+      en: 'Safely wrap sanitary pads or blades in paper with a clear red cross mark for sanitation workers.',
+      ta: 'தூய்மைப் பணியாளர்கள் நலன் கருதி சுகாதார கழிவுகளை செய்தித்தாளில் சுற்றி சிவப்பு குறியிடவும்.'
+    },
+    category: 'sanitary',
+    points: 25,
+    recurrence: 'daily',
+    icon: 'ShieldCheck'
+  },
+  {
+    id: 'weekly-e-waste-audit',
+    title: {
+      en: 'Inspect & Bundle Dead Cables & Old Batteries',
+      ta: 'வீட்டு பழைய ஒயர்கள் மற்றும் பேட்டரிகளை சேகரித்தல்'
+    },
+    description: {
+      en: 'Check drawers for expired batteries, frayed chargers, and store them safely for e-waste drop-off.',
+      ta: 'வீட்டு அலமாரிகளில் உள்ள பயன்படுத்தாத சார்ஜர்கள் மற்றும் பேட்டரிகளை தனிப் பெட்டியில் பாதுகாப்பாக வைக்கவும்.'
+    },
+    category: 'ewaste',
+    points: 50,
+    recurrence: 'weekly',
+    icon: 'BatteryCharging'
+  },
+  {
+    id: 'weekly-cardboard-flatten',
+    title: {
+      en: 'Flatten & De-tape All Delivery Boxes',
+      ta: 'அனைத்து அட்டைப் பெட்டிகளையும் தட்டையாக்குதல்'
+    },
+    description: {
+      en: 'Peel plastic packaging tape from delivery boxes and flatten them neatly into a compact bundle.',
+      ta: 'டெலிவரி அட்டைப் பெட்டிகளில் உள்ள பிளாஸ்டிக் டேப்பை உரித்து தட்டையாக அடுக்கி வைக்கவும்.'
+    },
+    category: 'dry',
+    points: 40,
+    recurrence: 'weekly',
+    icon: 'Package'
+  },
+  {
+    id: 'weekly-home-compost-turn',
+    title: {
+      en: 'Turn Home Compost / Check Moisture Balance',
+      ta: 'உரத் தொட்டியை கிளறி காற்றோட்டம் அளித்தல்'
+    },
+    description: {
+      en: 'Aerate your home composting pot or pit with dry cocopeat or dried leaves to prevent odor.',
+      ta: 'துர்நாற்றம் வீசாமல் இருக்க வீட்டு உரக் குவியலை கிளறி காய்ந்த இலைகள் அல்லது தேங்காய் நார் சேர்க்கவும்.'
+    },
+    category: 'wet',
+    points: 45,
+    recurrence: 'weekly',
+    icon: 'Leaf'
+  },
+  {
+    id: 'weekly-neighbor-awareness',
+    title: {
+      en: 'Share Waste Sorting Tips with a Neighbor or Friend',
+      ta: 'குப்பை பிரிப்பு விழிப்புணர்வை நண்பருடன் பகிர்தல்'
+    },
+    description: {
+      en: 'Help one household understand the color-coded bin system or why wet waste must not go into plastic bags.',
+      ta: 'வண்ணத் தொட்டிகளின் முக்கியத்துவத்தை உங்கள் அண்டை வீட்டாருக்கோ அல்லது நண்பருக்கோ விளக்குங்கள்.'
+    },
+    category: 'lifestyle',
+    points: 50,
+    recurrence: 'weekly',
+    icon: 'Users'
+  }
+];
